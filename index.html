@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080c10">
+<title>JAH SPORTS PREDICTIONS</title>
+<style>
+:root{color-scheme:dark;--bg:#080c10;--panel:#111820;--green:#b7ff52;--muted:#9aa6b2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#f4f7fa;font-family:Arial,sans-serif}
+header{padding:22px 17px;background:#0d1319;border-bottom:1px solid #27313b}
+.brand{font-size:23px;font-weight:900;letter-spacing:-.7px}
+.brand span{color:var(--green)}
+.tag{color:var(--muted);font-size:12px;margin-top:7px}
+nav{display:flex;gap:8px;padding:12px;overflow-x:auto;background:#0d1319}
+nav button,.filter{background:#17212a;border:1px solid #2b3741;color:#eaf0f5;padding:11px 14px;border-radius:9px;white-space:nowrap}
+nav button.active{background:var(--green);color:#10150b;font-weight:bold}
+main{max-width:760px;margin:auto;padding:17px}
+.notice{background:#172116;border:1px solid #38502b;border-radius:12px;padding:13px;color:#d9f7bf;font-size:13px;line-height:1.6}
+h2{font-size:21px;margin:25px 0 13px}
+.sub{color:var(--muted);font-size:13px;line-height:1.5}
+.card{background:var(--panel);border:1px solid #27323d;border-radius:14px;padding:16px;margin:12px 0}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.pill{font-size:10px;color:var(--green);background:#24331b;padding:6px 8px;border-radius:20px}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:9px;margin:23px 0;text-align:center;font-weight:bold}
+.teams div:last-child{text-align:right}
+.teams div:first-child{text-align:left}
+.vs{color:var(--muted);font-size:12px}
+.pred{border-top:1px solid #2b3540;padding-top:13px;font-size:14px}
+.pred strong{color:var(--green)}
+.small{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
+.primary{background:var(--green);color:#10150b;border:0;border-radius:9px;padding:13px 16px;font-weight:bold;width:100%;margin-top:12px}
+.secondary{background:#1b2730;color:#f4f7fa;border:1px solid #34424f;border-radius:9px;padding:11px}
+input{width:100%;padding:13px;background:#080c10;border:1px solid #34424f;border-radius:9px;color:white;margin:7px 0 12px}
+label{font-size:13px;color:#c3ccd5}
+section[hidden]{display:none}
+footer{text-align:center;padding:28px 12px;color:var(--muted);font-size:12px;line-height:1.7}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">JAH <span>SPORTS</span></div>
+  <div class="brand">PREDICTIONS ⚽</div>
+  <div class="tag">FOOTBALL INSIGHTS • MATCH ANALYSIS • SMARTER RESEARCH</div>
+</header>
+<nav>
+  <button class="active" data-tab="home">Home</button>
+  <button data-tab="fixtures">Fixtures</button>
+  <button data-tab="analysis">Analysis</button>
+  <button data-tab="account">Account</button>
+  <button data-tab="premium">Premium</button>
+</nav>
+<main>
+<div class="notice">ℹ️ <strong>Informational demo</strong><br>Predictions and matches below are examples for demonstration only. They are not live fixtures or guaranteed results. No real-money bets or payments are accepted.</div>
+
+<section id="home">
+<h2>🔥 Featured predictions</h2>
+<p class="sub">Explore sample picks and the reasoning behind them.</p>
+<div id="homeMatches"></div>
+<h2>Why JAH SPORTS?</h2>
+<div class="card"><strong>📊 Match analysis</strong><p class="sub">Understand form, goals and possible outcomes before making your own decisions.</p></div>
+<div class="card"><strong>⚽ Fixture centre</strong><p class="sub">A sample layout for upcoming matches and results.</p></div>
+<button class="primary" onclick="showTab('premium')">Explore Premium →</button>
+</section>
+
+<section id="fixtures" hidden>
+<h2>⚽ Fixture centre</h2>
+<p class="sub">Illustrative fixtures only. Dates and teams are not live data.</p>
+<div id="fixtureMatches"></div>
+</section>
+
+<section id="analysis" hidden>
+<h2>📊 Match analysis</h2>
+<div class="card"><span class="pill">SAMPLE ANALYSIS</span><h3>How to assess a football match</h3><p class="sub">1. Review each team's recent results.</p><p class="sub">2. Compare goals scored and conceded.</p><p class="sub">3. Consider home advantage, injuries and suspensions when reliable information is available.</p><p class="sub">4. Compare your prediction against other possible outcomes.</p><p class="sub">5. Remember that football is unpredictable. No analysis guarantees a win.</p></div>
+</section>
+
+<section id="account" hidden>
+<h2>👤 Demo account</h2>
+<p class="sub">This form is a visual prototype. It does not create or store a real account.</p>
+<div class="card">
+<label for="demoName">Display name</label>
+<input id="demoName" placeholder="Enter a display name">
+<label for="demoEmail">Email address</label>
+<input id="demoEmail" type="email" placeholder="you@example.com">
+<button class="primary" onclick="demoLogin()">Preview account</button>
+<p id="accountMessage" class="sub" aria-live="polite"></p>
+</div>
+</section>
+
+<section id="premium" hidden>
+<h2>💎 Premium predictions</h2>
+<div class="card">
+<span class="pill">PREVIEW</span>
+<h3>JAH Premium</h3>
+<p class="sub">A preview of a future membership area.</p>
+<p>✓ Extended match analysis</p>
+<p>✓ Featured prediction lists</p>
+<p>✓ Weekly review and results tracking</p>
+<button class="primary" onclick="alert('Demo only. Membership and payment are not active.')">Preview membership</button>
+</div>
+</section>
+</main>
+<footer>JAH SPORTS PREDICTIONS<br>Independent football information and analysis.<br>Predictions are uncertain and are not financial advice.<br>© 2026 JAH SPORTS</footer>
+
+<script>
+const matches=[
+{home:"Lions FC",away:"Eagles FC",time:"Sample fixture",pick:"Over 1.5 goals",reason:"Illustrative pick for demonstrating the prediction card."},
+{home:"City United",away:"Royal Stars",time:"Sample fixture",pick:"Both teams to score",reason:"Example only; no current team statistics were checked."},
+{home:"United Athletic",away:"Coastal FC",time:"Sample fixture",pick:"Home or draw",reason:"Illustrative selection, not a verified match forecast."}
+];
+function card(m){
+return `<article class="card"><div class="top"><span class="pill">DEMO PREDICTION</span><span class="sub">${m.time}</span></div><div class="teams"><div>${m.home}</div><div class="vs">VS</div><div>${m.away}</div></div><div class="pred">Example pick: <strong>${m.pick}</strong></div><p class="small">${m.reason}</p></article>`;
+}
+document.getElementById("homeMatches").innerHTML=matches.slice(0,2).map(card).join("");
+document.getElementById("fixtureMatches").innerHTML=matches.map(card).join("");
+function showTab(id){
+document.querySelectorAll("main section").forEach(s=>s.hidden=s.id!==id);
+document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.tab===id));
+window.scrollTo(0,0);
+}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+function demoLogin(){
+const name=document.getElementById("demoName").value.trim();
+document.getElementById("accountMessage").textContent=name?"Welcome, "+name+"! This is only a local demo; no account was created.":"Enter a display name to preview this demo.";
+}
+</script>
+</body>
+</html>

@@ -143,6 +143,25 @@ async function demoLogin(){
   }
 
   message.textContent = "Welcome back!";
+
+async function registerAccount(){
+  const email = document.getElementById("demoEmail").value.trim();
+  const password = document.getElementById("demoPassword").value;
+  const message = document.getElementById("accountMessage");
+
+  message.textContent = "Creating your account...";
+
+  const { error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    message.textContent = "Registration failed: " + error.message;
+    return;
+  }
+
+  message.textContent = "Account created! Check your email if confirmation is required.";
 }
 </script>
   <div style="padding:20px;text-align:center">

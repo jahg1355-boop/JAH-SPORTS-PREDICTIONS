@@ -115,7 +115,7 @@ const matches=[
 {home:"City United",away:"Royal Stars",time:"Sample fixture",pick:"Both teams to score",reason:"Example only; no current team statistics were checked."},
 {home:"United Athletic",away:"Coastal FC",time:"Sample fixture",pick:"Home or draw",reason:"Illustrative selection, not a verified match forecast."}
 ];
-function card(m){
+function card(m){ 
 return `<article class="card"><div class="top"><span class="pill">DEMO PREDICTION</span><span class="sub">${m.time}</span></div><div class="teams"><div>${m.home}</div><div class="vs">VS</div><div>${m.away}</div></div><div class="pred">Example pick: <strong>${m.pick}</strong></div><p class="small">${m.reason}</p></article>`;
 }
 document.getElementById("homeMatches").innerHTML=matches.slice(0,2).map(card).join("");

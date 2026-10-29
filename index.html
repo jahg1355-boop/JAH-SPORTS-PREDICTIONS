@@ -84,6 +84,7 @@ footer{text-align:center;padding:28px 12px;color:var(--muted);font-size:12px;lin
 <input id="demoName" placeholder="Enter a display name">
 <label for="demoEmail">Email address</label>
 <input id="demoEmail" type="email" placeholder="you@example.com">
+  <label for="demoPassword">Password</label><input id="demoPassword" type="password" placeholder="Enter your password" autocomplete="current-password">
 <button class="primary" onclick="demoLogin()">Preview account</button>
 <p id="accountMessage" class="sub" aria-live="polite"></p>
 </div>
@@ -103,8 +104,11 @@ footer{text-align:center;padding:28px 12px;color:var(--muted);font-size:12px;lin
 </section>
 </main>
 <footer>JAH SPORTS PREDICTIONS<br>Independent football information and analysis.<br>Predictions are uncertain and are not financial advice.<br>© 2026 JAH SPORTS</footer>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+const SUPABASE_URL = "https://ejxyekbpctwkpkjuptio.supabase.co/rest/v1/";
+const SUPABASE_KEY = "sb_publishable_JvbNG61pRKN4MFvttxP5YQ_7YODSDZ_";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const matches=[
 {home:"Lions FC",away:"Eagles FC",time:"Sample fixture",pick:"Over 1.5 goals",reason:"Illustrative pick for demonstrating the prediction card."},
 {home:"City United",away:"Royal Stars",time:"Sample fixture",pick:"Both teams to score",reason:"Example only; no current team statistics were checked."},
@@ -125,6 +129,7 @@ function demoLogin(){
 const name=document.getElementById("demoName").value.trim();
 document.getElementById("accountMessage").textContent=name?"Welcome, "+name+"! This is only a local demo; no account was created.":"Enter a display name to preview this demo.";
 }
+
 </script>
   <div style="padding:20px;text-align:center">
   <h2>JAH Premium</h2>

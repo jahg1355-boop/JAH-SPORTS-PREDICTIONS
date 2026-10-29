@@ -125,11 +125,25 @@ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b
 window.scrollTo(0,0);
 }
 document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
-function demoLogin(){
-const name=document.getElementById("demoName").value.trim();
-document.getElementById("accountMessage").textContent=name?"Welcome, "+name+"! This is only a local demo; no account was created.":"Enter a display name to preview this demo.";
-}
+async function demoLogin(){
+  const email = document.getElementById("demoEmail").value.trim();
+  const password = document.getElementById("demoPassword").value;
+  const message = document.getElementById("accountMessage");
 
+  message.textContent = "Please wait...";
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    message.textContent = "Login failed: " + error.message;
+    return;
+  }
+
+  message.textContent = "Welcome back!";
+}
 </script>
   <div style="padding:20px;text-align:center">
   <h2>JAH Premium</h2>

@@ -152,14 +152,72 @@ preview.src=URL.createObjectURL(file);
 preview.style.display='block';
 };
 
-function analyse(){
-const home=document.getElementById('homeTeam').value.trim();
-const away=document.getElementById('awayTeam').value.trim();
-const output=document.getElementById('output');
-if(!home||!away){alert('Enter both team names first.');return;}
-output.hidden=false;
-output.innerHTML='<strong>Match submitted</strong><br>'+home+' vs '+away+'<br><br>Screenshot received. Real AI prediction is not yet connected. No correct score or confidence percentage has been verified.';
-document.getElementById('lastResult').textContent=home+' vs '+away+' — awaiting analysis.';
+
+async function analyse() {
+  const home = document.getElementById('homeTeam').value.trim();
+  const away = document.getElementById('awayTeam').value.trim();
+  const output = document.getElementById('output');
+  const photo = document.getElementById('photo');
+  const file = photo.files[0];
+
+  if (!home || !away) {
+    alert('Enter both team names first.');
+    return;
+  }
+
+  if (!file) {
+    alert('Please upload a match screenshot.');
+    return;
+  }
+
+  if (!file.type.startsWith('image/')) {
+    alert('Please upload an image.');
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    alert('Please use an image smaller than 5MB.');
+    return;
+  }
+
+  output.hidden = false;
+  output.textContent = 'JAH GUIDE AI is analysing your screenshot...';
+
+  try {
+    const imageDataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('Could not read image.'));
+      reader.readAsDataURL(file);
+    });
+
+    const response = await fetch('/api/analyse', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        imageDataUrl,
+        homeTeam: home,
+        awayTeam: away
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'AI analysis failed.');
+    }
+
+    output.textContent = data.analysis;
+    output.style.whiteSpace = 'pre-wrap';
+
+    document.getElementById('lastResult').textContent =
+      data.analysis;
+
+  } catch (error) {
+    output.textContent = 'Analysis error: ' + error.message;
+  }
 }
 
 function saveProfile(){

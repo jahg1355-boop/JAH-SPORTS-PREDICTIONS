@@ -246,26 +246,37 @@ localStorage.setItem('jahEmail',email);
 document.getElementById('profileMessage').textContent='Profile saved on this device.';
 }
 
-function subscribe() {
+function subscribe(plan) {
   const message = document.getElementById('premiumMessage');
 
+  const plans = {
+    monthly: {
+      name: 'Monthly Premium',
+      price: 'GH₵500',
+      duration: '30 days'
+    },
+    yearly: {
+      name: 'Yearly Premium',
+      price: 'GH₵1,000',
+      duration: '12 months'
+    }
+  };
+
+  const selected = plans[plan];
+
+  if (!selected) {
+    message.textContent = 'Please select a valid plan.';
+    return;
+  }
+
   message.textContent =
-`JAH GUIDE AI PREMIUM
-
-Unlock premium features:
-
-✓ AI screenshot analysis
-✓ Detailed match reports
-✓ Possible correct-score scenarios
-✓ Match analysis history
-✓ Premium member access
-
-Subscription payment will be available soon.
-
-Your premium membership will only activate after secure payment verification.`;
-
-  message.style.whiteSpace = 'pre-wrap';
+    selected.name + ' selected — ' +
+    selected.price + ' for ' +
+    selected.duration +
+    '. Payment verification will be connected next.';
 }
+
+  
 </script>
 </body>
 </html>

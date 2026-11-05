@@ -229,8 +229,25 @@ localStorage.setItem('jahEmail',email);
 document.getElementById('profileMessage').textContent='Profile saved on this device.';
 }
 
-function subscribe(){
-document.getElementById('premiumMessage').textContent='Payment verification will be connected in the next development stage.';
+function subscribe() {
+  const message = document.getElementById('premiumMessage');
+
+  message.textContent =
+`JAH GUIDE AI PREMIUM
+
+Unlock premium features:
+
+✓ AI screenshot analysis
+✓ Detailed match reports
+✓ Possible correct-score scenarios
+✓ Match analysis history
+✓ Premium member access
+
+Subscription payment will be available soon.
+
+Your premium membership will only activate after secure payment verification.`;
+
+  message.style.whiteSpace = 'pre-wrap';
 }
 </script>
 </body>

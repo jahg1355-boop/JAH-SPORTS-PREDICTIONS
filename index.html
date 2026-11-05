@@ -115,13 +115,30 @@ footer{text-align:center;color:#747d8e;padding:30px;font-size:12px}
 <section id="premium" hidden>
 <h2>💎 JAH PREMIUM</h2>
 <div class="card">
-<h3>Premium Membership</h3>
-<p>✔ Extended match analysis</p>
-<p>✔ Premium prediction lists</p>
-<p>✔ Match history</p>
-<p>✔ Exclusive analysis</p>
-<button class="primary" onclick="subscribe()">SUBSCRIBE TO PREMIUM</button>
-<p class="muted" id="premiumMessage">Membership activation requires verified payment.</p>
+<h3>Choose Your Premium Plan</h3>
+
+<div class="card">
+  <h3>Monthly Premium</h3>
+  <h2>GH₵500</h2>
+  <p>30 days of premium access</p>
+  <button class="primary" onclick="subscribe('monthly')">
+    SUBSCRIBE MONTHLY
+  </button>
+</div>
+
+<div class="card">
+  <h3>⭐ Yearly Premium</h3>
+  <h2>GH₵1,000</h2>
+  <p>12 months of premium access</p>
+  <button class="primary" onclick="subscribe('yearly')">
+    SUBSCRIBE YEARLY
+  </button>
+</div>
+
+<p class="muted" id="premiumMessage">
+  Choose a plan to continue. Payment verification is required.
+</p>
+
 </div>
 </section>
 </main>

@@ -260,13 +260,54 @@ async function analyse() {
   }
 }
 
-function saveProfile(){
-const name=document.getElementById('username').value;
-const email=document.getElementById('email').value;
-if(!name||!email){alert('Enter your name and email.');return;}
-localStorage.setItem('jahName',name);
-localStorage.setItem('jahEmail',email);
-document.getElementById('profileMessage').textContent='Profile saved on this device.';
+async function signUp() {
+  const name = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const message = document.getElementById('profileMessage');
+
+  if (!name || !email || password.length < 8) {
+    message.textContent = 'Enter your name, email and a password of at least 8 characters.';
+    return;
+  }
+
+  message.textContent = 'Creating account...';
+
+  const { data, error } = await window.sbClient.auth.signUp({
+    email,
+    password,
+    options: { data: { display_name: name } }
+  });
+
+  if (error) {
+    message.textContent = error.message;
+    return;
+  }
+
+  message.textContent = data.session
+    ? 'Account created successfully!'
+    : 'Account created. Please check your email to confirm it.';
+}
+
+async function signIn() {
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const message = document.getElementById('profileMessage');
+
+  message.textContent = 'Logging in...';
+
+  const { error } = await window.sbClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  message.textContent = error ? error.message : 'Login successful!';
+}
+
+async function signOut() {
+  const { error } = await window.sbClient.auth.signOut();
+  document.getElementById('profileMessage').textContent =
+    error ? error.message : 'Logged out successfully.';
 }
 
 function subscribe(plan) {

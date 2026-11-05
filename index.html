@@ -109,13 +109,29 @@ window.sbClient = window.supabase.createClient(
 <section id="account" hidden>
 <h2>👤 My Account</h2>
 <div class="card">
-<label>Display name</label>
-<input id="username" placeholder="Your name">
-<label>Email address</label>
-<input id="email" type="email" placeholder="Your email">
-<button class="primary" onclick="saveProfile()">SAVE PROFILE</button>
-<p id="profileMessage" class="muted"></p>
-<p class="muted">Account profile is stored locally in this starter version. Secure login will be connected to Supabase next.</p>
+  <label>Display name</label>
+  <input id="username" placeholder="Your name">
+
+  <label>Email address</label>
+  <input id="email" type="email" placeholder="Your email">
+
+  <label>Password</label>
+  <input id="password" type="password"
+         placeholder="At least 8 characters">
+
+  <button class="primary" onclick="signUp()">
+    Create Account
+  </button>
+
+  <button onclick="signIn()">
+    Login
+  </button>
+
+  <button onclick="signOut()">
+    Logout
+  </button>
+
+  <p id="profileMessage" class="muted"></p>
 </div>
 </section>
 

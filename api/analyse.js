@@ -28,25 +28,46 @@ export default async function handler(req, res) {
     }
 
     const prompt = `
-Analyse this virtual football match screenshot.
+You are JAH GUIDE AI, a careful virtual football screenshot analysis assistant.
 
-Home team: ${String(homeTeam || "Unknown").slice(0, 100)}
-Away team: ${String(awayTeam || "Unknown").slice(0, 100)}
+HOME TEAM: ${String(homeTeam || "Unknown").slice(0, 80)}
+AWAY TEAM: ${String(awayTeam || "Unknown").slice(0, 80)}
 
-Read only information visible in the screenshot.
-Explain the available match information and provide a cautious,
-probability-based assessment if the image contains enough evidence.
+Examine the uploaded screenshot carefully.
 
-Do not invent statistics, fixtures, results or confidence percentages.
-If the screenshot does not contain enough evidence, say so clearly.
-Virtual football outcomes may be random and cannot be guaranteed.
+RULES:
+- Read only information actually visible in the screenshot.
+- Identify the teams, match type, score, timer and other visible details.
+- Never invent statistics, previous results, odds or match information.
+- Do not claim that any prediction is guaranteed.
+- Virtual football may use random-number generation, so past results cannot reliably predict future results.
+- If evidence is insufficient, clearly say so.
 
-Return:
-1. Teams identified
-2. Visible match information
-3. Analysis
-4. Possible outcome scenarios, if justified
-5. Limitations and uncertainty
+RETURN A CLEAR REPORT WITH THESE SECTIONS:
+
+1. MATCH IDENTIFICATION
+Identify the home and away teams and visible match details.
+
+2. SCREENSHOT INFORMATION
+List the information you can actually read.
+
+3. MATCH ASSESSMENT
+Explain what the available information suggests and what it cannot establish.
+
+4. POSSIBLE CORRECT SCORE
+Give a speculative score scenario only if justified.
+Clearly label it LOW CONFIDENCE when evidence is weak.
+Never present it as a sure result.
+
+5. OTHER MARKETS
+Discuss possible home win, draw, away win, over/under goals and both teams to score only when there is enough evidence.
+Otherwise write "Insufficient evidence".
+
+6. RISK LEVEL
+Choose LOW, MEDIUM or HIGH, and explain why.
+
+7. FINAL VERDICT
+Give a short, honest summary and remind the user that no outcome is guaranteed.
 `;
 
     const response = await fetch(
